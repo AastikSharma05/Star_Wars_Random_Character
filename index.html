@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jquery </title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+   <div class="box">
+    <h1 class="start">Star Wars Random Character</h1>
+    <button>Click Me</button>
+    <h1 class="name"></h1>
+    <img src="" class="character-img">
+</div>
+
+
+ <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
+    <script>
+        
+        $(document).ready(function(){
+
+            $("button").on("click",function(){
+                const random_number = Math.ceil(Math.random()*88)+1
+                $.get(`https://akabab.github.io/starwars-api/api/id/${random_number}.json`,function(data){
+                    $("h1.name").text(data['name'])
+                    $(".character-img").attr("src",data['image'])
+                })
+            })
+
+        })
+
+    </script>
+</body>
+</html>
